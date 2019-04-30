@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
-import {  CurrencyPipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import {Http, RequestOptionsArgs, Headers, Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
@@ -15,8 +15,8 @@ import { LocalStorageService } from 'ngx-webstorage';
 export class AppComponent  {
   name = 'Angular 7 reactive form with dynamic fields and validations example';
   exampleForm: FormGroup;
-  totalSum: number = 0;
-  myFormValueChanges$;
+  // totalSum: number = 0;
+  // myFormValueChanges$;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,16 +35,17 @@ export class AppComponent  {
       countryName: [''],
       city: [''],
       zipCode: [''],
-      street: [''],
-      units: this.formBuilder.array([
-         // load first row at start
-         this.getUnit()
-      ])
+      street: ['']
+      // ,
+      // units: this.formBuilder.array([
+      //    // load first row at start
+      //    this.getUnit()
+      // ])
     });
-    // initialize stream on units
-    this.myFormValueChanges$ = this.exampleForm.controls['units'].valueChanges;
-    // subscribe to the stream so listen to changes on units
-    this.myFormValueChanges$.subscribe(units => this.updateTotalUnitPrice(units));
+    // // initialize stream on units
+    // this.myFormValueChanges$ = this.exampleForm.controls['units'].valueChanges;
+    // // subscribe to the stream so listen to changes on units
+    // this.myFormValueChanges$.subscribe(units => this.updateTotalUnitPrice(units));
 
     // preload some data into form fields
     const geoIpInfo = this.storage.retrieve('geoIpInfo');
@@ -76,9 +77,9 @@ export class AppComponent  {
   /**
    * unsubscribe listener
    */
-  ngOnDestroy(): void {
-    this.myFormValueChanges$.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   this.myFormValueChanges$.unsubscribe();
+  // }
 
   /**
    * Save form data
@@ -91,50 +92,50 @@ export class AppComponent  {
   /**
    * Create form unit
    */
-  private getUnit() {
-    const numberPatern = '^[0-9.,]+$';
-    return this.formBuilder.group({
-      unitName: ['', Validators.required],
-      qty: [1, [Validators.required, Validators.pattern(numberPatern)]],
-      unitPrice: ['', [Validators.required, Validators.pattern(numberPatern)]],
-      unitTotalPrice: [{value: '', disabled: true}]
-    });
-  }
+  // private getUnit() {
+  //   const numberPatern = '^[0-9.,]+$';
+  //   return this.formBuilder.group({
+  //     unitName: ['', Validators.required],
+  //     qty: [1, [Validators.required, Validators.pattern(numberPatern)]],
+  //     unitPrice: ['', [Validators.required, Validators.pattern(numberPatern)]],
+  //     unitTotalPrice: [{value: '', disabled: true}]
+  //   });
+  // }
 
-  /**
-   * Add new unit row into form
-   */
-  private addUnit() {
-    const control = <FormArray>this.exampleForm.controls['units'];
-    control.push(this.getUnit());
-  }
+  // /**
+  //  * Add new unit row into form
+  //  */
+  // private addUnit() {
+  //   const control = <FormArray>this.exampleForm.controls['units'];
+  //   control.push(this.getUnit());
+  // }
 
-  /**
-   * Remove unit row from form on click delete button
-   */
-  private removeUnit(i: number) {
-    const control = <FormArray>this.exampleForm.controls['units'];
-    control.removeAt(i);
-  }
+  // /**
+  //  * Remove unit row from form on click delete button
+  //  */
+  // private removeUnit(i: number) {
+  //   const control = <FormArray>this.exampleForm.controls['units'];
+  //   control.removeAt(i);
+  // }
 
-  /**
-   * Update prices as soon as something changed on units group
-   */
-  private updateTotalUnitPrice(units: any) {
-    // get our units group controll
-    const control = <FormArray>this.exampleForm.controls['units'];
-    // before recount total price need to be reset. 
-    this.totalSum = 0;
-    for (let i in units) {
-      let totalUnitPrice = (units[i].qty*units[i].unitPrice);
-      // now format total price with angular currency pipe
-      let totalUnitPriceFormatted = this.currencyPipe.transform(totalUnitPrice, 'USD', 'symbol-narrow', '1.2-2');
-      // update total sum field on unit and do not emit event myFormValueChanges$ in this case on units
-      control.at(+i).get('unitTotalPrice').setValue(totalUnitPriceFormatted, {onlySelf: true, emitEvent: false});
-      // update total price for all units
-      this.totalSum += totalUnitPrice;
-    }
-  }
+  // /**
+  //  * Update prices as soon as something changed on units group
+  //  */
+  // private updateTotalUnitPrice(units: any) {
+  //   // get our units group controll
+  //   const control = <FormArray>this.exampleForm.controls['units'];
+  //   // before recount total price need to be reset. 
+  //   this.totalSum = 0;
+  //   for (let i in units) {
+  //     let totalUnitPrice = (units[i].qty*units[i].unitPrice);
+  //     // now format total price with angular currency pipe
+  //     let totalUnitPriceFormatted = this.currencyPipe.transform(totalUnitPrice, 'USD', 'symbol-narrow', '1.2-2');
+  //     // update total sum field on unit and do not emit event myFormValueChanges$ in this case on units
+  //     control.at(+i).get('unitTotalPrice').setValue(totalUnitPriceFormatted, {onlySelf: true, emitEvent: false});
+  //     // update total price for all units
+  //     this.totalSum += totalUnitPrice;
+  //   }
+  // }
 
   /**
    * Get online geoIp information to pre-fill form fields country, city and zip 
