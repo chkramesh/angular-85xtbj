@@ -29,18 +29,13 @@ export class AppComponent  {
    * Form initialization
    */
   ngOnInit () {
-    // create form with validators and dynamic rows array
+    // create form with validators
     this.exampleForm = this.formBuilder.group({
       companyName: ['', [Validators.required,Validators.maxLength(25)]],
       countryName: [''],
       city: [''],
       zipCode: [''],
       street: ['']
-      // ,
-      // units: this.formBuilder.array([
-      //    // load first row at start
-      //    this.getUnit()
-      // ])
     });
     // // initialize stream on units
     // this.myFormValueChanges$ = this.exampleForm.controls['units'].valueChanges;
@@ -74,19 +69,21 @@ export class AppComponent  {
     }
   }
 
-  /**
-   * unsubscribe listener
-   */
+  // unsubscribe listener
   // ngOnDestroy(): void {
   //   this.myFormValueChanges$.unsubscribe();
   // }
 
-  /**
-   * Save form data
-   */
+  /** Save form data */
   save(model: any, isValid: boolean, e: any) {
     e.preventDefault();
     alert('Form data are: '+JSON.stringify(model));
+    var data = JSON.stringify(model);
+
+    for (let i in model) {
+       alert('Form data companyName: ' + model[i]);
+       // alert('Form data companyName: ' + model[i].companyName);
+    }
   }
 
   /**
@@ -137,26 +134,20 @@ export class AppComponent  {
   //   }
   // }
 
-  /**
-   * Get online geoIp information to pre-fill form fields country, city and zip 
-   */
+  /** Get online geoIp information to pre-fill form fields country, city and zip  */
   private getCountryByIpOnline(): Observable<any> {
     return this.http.get('https://ipapi.co/json/')
         .map(this.extractData)
         .catch(this.handleError);
   }
 
-  /**
-   * responce data extraction from http responce
-   */
+  /** responce data extraction from http responce */
   private extractData(res: Response) {
     let body = res.json();
     return body || { };
   }
 
-  /**
-   * handle error if geoIp service not available. 
-   */
+  /** handle error if geoIp service not available.  */
   private handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
