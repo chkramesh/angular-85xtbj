@@ -58,13 +58,15 @@ export class AppComponent  {
       'toStore': '',
       'region': '',
       'state': '',
-      'country': '',
+      // country: '',
+      country: [this.countries[2].id],
       checked: false,
       indeterminate: false,
       locationflag:true,
       homelocation:true,
       language:'',
-      skill:''
+      // skill:''
+      skill: [this.allSkills[2]]
     });
   }
 
@@ -72,6 +74,13 @@ export class AppComponent  {
   ngOnInit () {
 
     this.allSkills = this.commonDataService.getSkills();
+    console.log('this.allSkills = ' + this.allSkills);
+    // console.log('this.allSkills = ' + this.allSkills[1].name);
+    console.log('this.allSkills = ' + this.allSkills[1]);
+
+    // console.log('this.countries = ' + this.countries);
+    // console.log('this.countries = ' + this.countries[1]);
+     console.log('this.countries = ' + this.countries[1].name);
 
     this.buildForm();
     // // create form with validators
