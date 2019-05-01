@@ -9,6 +9,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
+import { CommonDataService}  from './common-data.service';
 
 
 import { A11yModule } from '@angular/cdk/a11y';
@@ -108,7 +109,7 @@ export class MaterialModule { }
                   MaterialModule, FlexLayoutModule, BrowserAnimationsModule, HttpModule ],
   declarations: [ AppComponent, HelloComponent ],
   bootstrap:    [ AppComponent ],
-  providers:    [ CurrencyPipe ]
+  providers:    [ CurrencyPipe, CommonDataService ]
 })
 export class AppModule { }
 

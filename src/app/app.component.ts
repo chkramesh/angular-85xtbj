@@ -7,6 +7,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map'
 import { LocalStorageService } from 'ngx-webstorage';
 
+import { CommonDataService}  from './common-data.service';
+
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -17,12 +19,16 @@ export class AppComponent  {
   exampleForm: FormGroup;
   // totalSum: number = 0;
   // myFormValueChanges$;
+  langs: string[] = ["English", "French", "German"];
+  countries = [{'id':1, 'name':'India'}, {'id':2, 'name': 'USA'}, {'id':3, 'name': 'UK'}];
+  allSkills: Observable<any[]>;
 
   constructor(
     private formBuilder: FormBuilder,
     private http: Http,
     private storage: LocalStorageService,
-    private currencyPipe: CurrencyPipe
+    private currencyPipe: CurrencyPipe,
+    private commonDataService: CommonDataService
   ) { }
 
  // build the user edit form
@@ -34,7 +40,7 @@ export class AppComponent  {
       city: [''],
       zipCode: [''],
       street: [''],
-       firstName : '',
+      firstName : ['', [Validators.required,Validators.minLength(3), Validators.maxLength(10)]],
       lastName : '',
       email : '',
       test1 : '',
@@ -45,6 +51,7 @@ export class AppComponent  {
       test6 : '',
       fromLoc : '',
       toLoc : '',
+      dob: '',
       gender: 'yes',
       'storeName': '',
       'fromStore': '',
@@ -55,12 +62,17 @@ export class AppComponent  {
       checked: false,
       indeterminate: false,
       locationflag:true,
-      homelocation:true
+      homelocation:true,
+      language:'',
+      skill:''
     });
   }
 
   /**  Form initialization  */
   ngOnInit () {
+
+    this.allSkills = this.commonDataService.getSkills();
+
     this.buildForm();
     // // create form with validators
     // this.exampleForm = this.formBuilder.group({
@@ -132,8 +144,7 @@ export class AppComponent  {
     var data = JSON.stringify(model);
 
     for (let i in model) {
-       alert('Form data companyName: ' + model[i]);
-       // alert('Form data city: ' + model[i].city);
+       // alert('Form data companyName: ' + model[i]);
     }
   }
 
@@ -164,4 +175,15 @@ export class AppComponent  {
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
+
+  countryChange() {
+    // alert('countryChange');
+    // alert('countryChange exampleForm = ' + this.exampleForm);
+    // alert('countryChange exampleForm 1 = ' + this.exampleForm.get('country'));
+    alert('countryChange exampleForm 1 = ' + this.exampleForm.get('country').value);
+
+    
+
+  }
+
 }

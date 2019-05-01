@@ -61,7 +61,18 @@
 
       <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="left" layout-margin>
           <mat-form-field fxFlex="15">
-          <input matInput type="text" placeholder="First Name" formControlName="firstName">
+          <input matInput type="text" placeholder="First Name" formControlName="firstName" required>
+          <mat-error *ngIf="exampleForm.controls.firstName.invalid">
+              <span [hidden]="!exampleForm.controls['firstName'].errors.required">
+                This field is required.
+              </span> 
+              <span [hidden]="!exampleForm.controls['firstName'].errors.maxlength">
+                Maximmum alowed charactes are 10
+              </span>  
+              <span [hidden]="!exampleForm.controls['firstName'].errors.minlength">
+                Minium alowed charactes are 3
+              </span>          
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field fxFlex="15">
@@ -121,8 +132,36 @@
           <input matInput placeholder="State" formControlName="state">
         </mat-form-field>
         <mat-form-field >
-          <input matInput placeholder="Country" formControlName="country">        
+          <input matInput placeholder="Country" formControlName="country">   
         </mat-form-field>
+
+        <!--
+        <section class="example-section">
+          <label class="example-margin">Country:</label>
+          <select id="contry" formControlName="country">
+            <option value="">Please select a country</option>
+            <option *ngFor="let contry of countries" [value]="contry.id">{{contry.name}}</option>
+          </select>   
+        </section>
+        -->
+
+        <mat-form-field>
+          <mat-label>Select a country</mat-label>
+          <mat-select value="USA" (selectionChange)="countryChange()" formControlName="country">
+            <mat-option value="">Please select a country</mat-option>
+            <mat-option *ngFor="let contry of countries" [value]="contry.id">{{contry.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+         <mat-form-field>
+          <mat-label>Select Font size</mat-label>
+          <mat-select #fontSize value="15px" (selectionChange)="resizeTextArea()">
+            <mat-option value="10px">10px</mat-option>
+            <mat-option value="15px">15px</mat-option>
+            <mat-option value="20px">20px</mat-option>
+          </mat-select>
+        </mat-form-field>
+
       </div>
 
       <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="left" layout-margin>
@@ -132,11 +171,11 @@
           <mat-radio-button class="example-margin" value="f">No</mat-radio-button>
         </mat-radio-group>
 
-        <mat-form-field fxFlex="15">
+        <mat-form-field fxFlex="10">
           <input matInput  type="text"  placeholder="From Location" formControlName="fromLoc">
         </mat-form-field>
 
-        <mat-form-field fxFlex="15">
+        <mat-form-field fxFlex="10">
           <input matInput  type="text"  placeholder="To Location" formControlName="toLoc">
         </mat-form-field>        
 
@@ -144,10 +183,34 @@
           <label class="example-margin">Home Loc:</label>
           <mat-checkbox class="example-margin" homelocation="checked">Yes</mat-checkbox>          
         </section>
+
+        <mat-form-field>                
+          <input matInput type="date" name="dob" formControlName="dob" placeholder="Date of birth">
+       </mat-form-field>
+
+        <section class="example-section">
+          <label class="example-margin">Language:</label>
+          <select class="form-control" formControlName="language">
+              <option value="">Please select a language</option>
+              <option *ngFor="let lang of langs" [value]="lang">{{lang}}  </option>
+          </select>        
+        </section>
+
+        <section class="example-section">
+          <label class="example-margin">Skill:</label>
+          <select formControlName="skill">
+            <option *ngFor="let skill of allSkills | async" [ngValue]="skill.name">
+            {{ skill.displayName }}
+            </option>
+          </select>
+        </section>
+
       </div>
 
       
     </mat-card-content>
+
+    <pre>{{exampleForm.value | json}}</pre>
 
     <!-- Form submit button enabled on if form is valid -->    
     <mat-card-actions>
