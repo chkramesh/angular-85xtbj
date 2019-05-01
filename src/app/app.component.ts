@@ -74,13 +74,20 @@ export class AppComponent  {
   ngOnInit () {
 
     this.allSkills = this.commonDataService.getSkills();
-    console.log('this.allSkills = ' + this.allSkills);
-    // console.log('this.allSkills = ' + this.allSkills[1].name);
-    console.log('this.allSkills = ' + this.allSkills[1]);
+    console.log('this.allSkills 1 = ' + this.allSkills);
 
-    // console.log('this.countries = ' + this.countries);
-    // console.log('this.countries = ' + this.countries[1]);
-     console.log('this.countries = ' + this.countries[1].name);
+    var allSkillsData = JSON.stringify(this.allSkills);
+    console.log('this.allSkills 2 = ' + allSkillsData);
+
+    // console.log('this.allSkills = ' + this.allSkills[1].name);
+    console.log('this.allSkills 3 = ' + this.allSkills[0]);
+    // console.log('this.allSkills 3 = ' + this.allSkills.find['name']);
+
+    for (let value of Object.values(this.allSkills)) {
+         console.log(value); 
+    }
+
+    console.log('this.countries 4 = ' + this.countries[1].name);
 
     this.buildForm();
     // // create form with validators
@@ -149,12 +156,19 @@ export class AppComponent  {
   /** Save form data */
   save(model: any, isValid: boolean, e: any) {
     e.preventDefault();
-    alert('Form data are: '+JSON.stringify(model));
+    // alert('Form data are: '+JSON.stringify(model));
     var data = JSON.stringify(model);
+    console.log('save = ' + data);
 
-    for (let i in model) {
-       // alert('Form data companyName: ' + model[i]);
-    }
+    // below works
+    // for (let value of Object.values(model)) {
+    //      console.log(value); // John, then 30
+    // }
+
+     console.log('countryChange exampleForm 1 = ' + this.exampleForm.get('country').value);
+     console.log('countryChange exampleForm 2 = ' + this.exampleForm.value.firstName);
+
+
   }
 
   /** Get online geoIp information to pre-fill form fields country, city and zip  */
