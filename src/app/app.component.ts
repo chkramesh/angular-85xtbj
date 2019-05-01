@@ -25,10 +25,10 @@ export class AppComponent  {
     private currencyPipe: CurrencyPipe
   ) { }
 
-  /**  Form initialization  */
-  ngOnInit () {
-    // create form with validators
-    this.exampleForm = this.formBuilder.group({
+ // build the user edit form
+  public buildForm() {
+      // create form with validators
+      this.exampleForm = this.formBuilder.group({
       companyName: ['', [Validators.required,Validators.maxLength(25)]],
       countryName: [''],
       city: [''],
@@ -57,6 +57,41 @@ export class AppComponent  {
       locationflag:true,
       homelocation:true
     });
+  }
+
+  /**  Form initialization  */
+  ngOnInit () {
+    this.buildForm();
+    // // create form with validators
+    // this.exampleForm = this.formBuilder.group({
+    //   companyName: ['', [Validators.required,Validators.maxLength(25)]],
+    //   countryName: [''],
+    //   city: [''],
+    //   zipCode: [''],
+    //   street: [''],
+    //    firstName : '',
+    //   lastName : '',
+    //   email : '',
+    //   test1 : '',
+    //   test2 : '',
+    //   test3 : '',
+    //   test4 : '',
+    //   test5 : '',
+    //   test6 : '',
+    //   fromLoc : '',
+    //   toLoc : '',
+    //   gender: 'yes',
+    //   'storeName': '',
+    //   'fromStore': '',
+    //   'toStore': '',
+    //   'region': '',
+    //   'state': '',
+    //   'country': '',
+    //   checked: false,
+    //   indeterminate: false,
+    //   locationflag:true,
+    //   homelocation:true
+    // });
     
     // preload some data into form fields
     const geoIpInfo = this.storage.retrieve('geoIpInfo');
