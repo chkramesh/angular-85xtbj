@@ -33,7 +33,29 @@ export class AppComponent  {
       countryName: [''],
       city: [''],
       zipCode: [''],
-      street: ['']
+      street: [''],
+       firstName : '',
+      lastName : '',
+      email : '',
+      test1 : '',
+      test2 : '',
+      test3 : '',
+      test4 : '',
+      test5 : '',
+      test6 : '',
+      fromLoc : '',
+      toLoc : '',
+      gender: 'yes',
+      'storeName': '',
+      'fromStore': '',
+      'toStore': '',
+      'region': '',
+      'state': '',
+      'country': '',
+      checked: false,
+      indeterminate: false,
+      locationflag:true,
+      homelocation:true
     });
     
     // preload some data into form fields

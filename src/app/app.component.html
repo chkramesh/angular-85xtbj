@@ -9,10 +9,11 @@
     <form [formGroup]="exampleForm" novalidate (ngSubmit)="save(exampleForm.value, exampleForm.valid,$event)" >
     <mat-card-title>Reactive form</mat-card-title>
     <mat-card-content>
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="left" >
           
           <!-- Comapny name input field -->
-          <mat-form-field class="example-full-width" fxFlex="75%"> 
+          <!--class="example-full-width" fxFlex="75%" -->
+          <mat-form-field class="example-full-width" fxFlex="15%"> 
             <input matInput placeholder="Company name" formControlName="companyName" required>
             <!-- input field hint -->
             <mat-hint align="end">
@@ -30,34 +31,120 @@
           </mat-form-field>
   
           <!-- Country input field -->
-          <mat-form-field class="example-full-width" > 
+          <mat-form-field class="example-full-width" fxFlex="15%"> 
             <input matInput placeholder="Country" formControlName="countryName">
             <mat-hint align="end">Your IP country name loaded from ipapi.co/json/</mat-hint>
           </mat-form-field>
         
         </div>
 
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="center" layout-margin>
+        <!-- fxLayoutAlign="center"  -->
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="left" layout-margin>
           
           <!-- Street input field -->
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Street" fxFlex="75%" formControlName="street">
+          <mat-form-field class="example-full-width" fxFlex="15%">
+            <input matInput placeholder="Street"  formControlName="street">
           </mat-form-field>
 
           <!-- City input field -->
-          <mat-form-field class="example-full-width" > 
+          <mat-form-field class="example-full-width" fxFlex="15%"> 
             <input matInput placeholder="City" formControlName="city">
             <mat-hint align="end">City name loaded from ipapi.co/json/</mat-hint>
           </mat-form-field>
 
           <!-- Zip code input field -->
-          <mat-form-field class="example-full-width" fxFlex="20%"> 
+          <mat-form-field class="example-full-width" fxFlex="10%"> 
             <input matInput placeholder="Zip" formControlName="zipCode">
             <mat-hint align="end">Zip loaded from ipapi.co/json/</mat-hint>
           </mat-form-field>
-
       </div>
-      <br>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="left" layout-margin>
+          <mat-form-field fxFlex="15">
+          <input matInput type="text" placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="15">
+          <input matInput type="text" placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+         <mat-form-field fxFlex="15">
+          <input matInput  type="text"  placeholder="Email" formControlName="email">
+        </mat-form-field>
+
+        <mat-radio-group name="gender" fxFlex="40" class="radioAlignment">
+          <label>Gender:</label>
+          <mat-radio-button class="example-margin" value="m">Male</mat-radio-button>
+          <mat-radio-button value="f">Female</mat-radio-button>
+        </mat-radio-group> 
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="left" layout-margin>
+          <mat-form-field fxFlex="15">
+          <input matInput  type="text"  placeholder="Test1" formControlName="test1">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="15">
+          <input matInput  type="text"  placeholder="Test2" formControlName="test2">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="15">
+          <input matInput  type="text"  placeholder="Test3" formControlName="test3">
+        </mat-form-field>
+
+         <mat-form-field fxFlex="15">
+          <input matInput  type="text"  placeholder="Test4" formControlName="test4">
+        </mat-form-field>
+
+         <mat-form-field fxFlex="15">
+          <input matInput  type="text"  placeholder="Test5" formControlName="test5">
+        </mat-form-field>
+
+         <mat-form-field fxFlex="10">
+          <input matInput  type="text"  placeholder="Test6" formControlName="test6">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="left" layout-margin>
+        <mat-form-field fxFlex="15%">
+          <input matInput placeholder="Store Name" formControlName="storeName">
+        </mat-form-field>
+        <mat-form-field >
+          <input matInput placeholder="From Store" formControlName="fromStore">
+        </mat-form-field>
+        <mat-form-field >
+          <input matInput placeholder="To Store" formControlName="toStore">        
+        </mat-form-field>
+         <mat-form-field fxFlex="5">
+          <input matInput placeholder="Region" formControlName="region">
+        </mat-form-field>
+        <mat-form-field fxFlex="5">
+          <input matInput placeholder="State" formControlName="state">
+        </mat-form-field>
+        <mat-form-field >
+          <input matInput placeholder="Country" formControlName="country">        
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="left" layout-margin>
+         <mat-radio-group name="locationflag" fxFlex="15" class="radioAlignment">
+          <label>Location Flag:</label>
+          <mat-radio-button class="example-margin" value="y">Yes</mat-radio-button>
+          <mat-radio-button class="example-margin" value="f">No</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field fxFlex="15">
+          <input matInput  type="text"  placeholder="From Location" formControlName="fromLoc">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="15">
+          <input matInput  type="text"  placeholder="To Location" formControlName="toLoc">
+        </mat-form-field>        
+
+        <section class="example-section">
+          <label class="example-margin">Home Loc:</label>
+          <mat-checkbox class="example-margin" homelocation="checked">Yes</mat-checkbox>          
+        </section>
+      </div>
 
       
     </mat-card-content>
