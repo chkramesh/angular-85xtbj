@@ -90,36 +90,6 @@ export class AppComponent  {
     console.log('this.countries 4 = ' + this.countries[1].name);
 
     this.buildForm();
-    // // create form with validators
-    // this.exampleForm = this.formBuilder.group({
-    //   companyName: ['', [Validators.required,Validators.maxLength(25)]],
-    //   countryName: [''],
-    //   city: [''],
-    //   zipCode: [''],
-    //   street: [''],
-    //    firstName : '',
-    //   lastName : '',
-    //   email : '',
-    //   test1 : '',
-    //   test2 : '',
-    //   test3 : '',
-    //   test4 : '',
-    //   test5 : '',
-    //   test6 : '',
-    //   fromLoc : '',
-    //   toLoc : '',
-    //   gender: 'yes',
-    //   'storeName': '',
-    //   'fromStore': '',
-    //   'toStore': '',
-    //   'region': '',
-    //   'state': '',
-    //   'country': '',
-    //   checked: false,
-    //   indeterminate: false,
-    //   locationflag:true,
-    //   homelocation:true
-    // });
     
     // preload some data into form fields
     const geoIpInfo = this.storage.retrieve('geoIpInfo');
@@ -199,14 +169,17 @@ export class AppComponent  {
     return Observable.throw(errMsg);
   }
 
-  countryChange() {
-    // alert('countryChange');
+  countryChange(event) {
+    alert('countryChange event = ' +event);
+     // console.log(event.source.value, event.source.selected);
+     console.log('value = ' + event.source.value + ' selected = ' + event.source.selected);
     // alert('countryChange exampleForm = ' + this.exampleForm);
     // alert('countryChange exampleForm 1 = ' + this.exampleForm.get('country'));
     alert('countryChange exampleForm 1 = ' + this.exampleForm.get('country').value);
-
-    
-
   }
+
+  // changeValue($event: EventEmitter<MatSelectChange>) {
+  //   alert('countryChange exampleForm 1 = ' + $event.value);
+  //   }
 
 }
