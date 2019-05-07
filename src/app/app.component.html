@@ -198,14 +198,23 @@
           </mat-select>
         </mat-form-field>
 
-        <section class="example-section">
+        <mat-form-field fxFlex="7">
+          <mat-label>Select a Lang</mat-label>
+          <mat-select (selectionChange)="languageChange($event)" formControlName="skill">
+            <mat-option value="">Select a Skill</mat-option>
+            <mat-option *ngFor="let skill of allSkills | async" [value]="skill.name">
+            {{ skill.displayName }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- <section class="example-section">
           <label class="example-margin">Skill:</label>
           <select formControlName="skill">
             <option *ngFor="let skill of allSkills | async" [ngValue]="skill.name">
             {{ skill.displayName }}
             </option>
           </select>
-        </section>
+        </section> -->
 
       </div>
 
