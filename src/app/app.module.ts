@@ -6,10 +6,12 @@ import { CurrencyPipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule, Http } from '@angular/http';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { CommonDataService}  from './common-data.service';
+import { InMemoryDataService }  from '../server/in-memory-data.service';
 
 
 import { A11yModule } from '@angular/cdk/a11y';
@@ -106,7 +108,11 @@ export class MaterialModule { }
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, NgxWebstorageModule.forRoot(),
-                  MaterialModule, FlexLayoutModule, BrowserAnimationsModule, HttpModule ],
+                  MaterialModule,
+                 FlexLayoutModule,
+                 BrowserAnimationsModule,
+                 HttpModule,
+                 HttpClientInMemoryWebApiModule.forRoot( InMemoryDataService) ],
   declarations: [ AppComponent, HelloComponent ],
   bootstrap:    [ AppComponent ],
   providers:    [ CurrencyPipe, CommonDataService ]
