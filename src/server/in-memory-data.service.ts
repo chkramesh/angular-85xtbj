@@ -1,12 +1,4 @@
 import { Injectable } from '@angular/core';
-
-// @Injectable()
-// export class InMemoryDataService {
-
-//   constructor() { }
-
-// }
-
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 export class InMemoryDataService implements InMemoryDbService {
