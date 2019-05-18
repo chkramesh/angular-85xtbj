@@ -124,19 +124,21 @@ export class AppComponent  {
   // }
 
   /** Save form data */
-  save(model: any, isValid: boolean, e: any) {
+  save(exampleForm, model: any, isValid: boolean, e: any) {
     e.preventDefault();
     // alert('Form data are: '+JSON.stringify(model));
     var data = JSON.stringify(model);
     console.log('save = ' + data);
+    console.log('save exampleForm.value.firstName = ' + exampleForm.value.firstName);
+    console.log('save exampleForm country = ' + this.exampleForm.get('country').value);
+    console.log('save exampleForm lastName = ' + this.exampleForm.value.lastName);
 
     // below works
     // for (let value of Object.values(model)) {
     //      console.log(value); // John, then 30
     // }
 
-     console.log('countryChange exampleForm 1 = ' + this.exampleForm.get('country').value);
-     console.log('countryChange exampleForm 2 = ' + this.exampleForm.value.firstName);
+     
 
 
   }

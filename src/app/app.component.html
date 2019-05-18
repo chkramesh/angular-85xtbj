@@ -6,7 +6,7 @@
 <div class="basic-container">
   <mat-card>
     <!-- Page form start -->
-    <form [formGroup]="exampleForm" novalidate (ngSubmit)="save(exampleForm.value, exampleForm.valid,$event)" >
+    <form [formGroup]="exampleForm" novalidate (ngSubmit)="save(exampleForm, exampleForm.value, exampleForm.valid, $event)" >
     <mat-card-title>Reactive form</mat-card-title>
     <mat-card-content>
         <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="left" >
