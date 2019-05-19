@@ -74,19 +74,8 @@ export class AppComponent  {
   ngOnInit () {
 
     this.allSkills = this.commonDataService.getSkills();
-    console.log('this.allSkills 1 = ' + this.allSkills);
-
     var allSkillsData = JSON.stringify(this.allSkills);
     console.log('this.allSkills 2 = ' + allSkillsData);
-
-    // console.log('this.allSkills = ' + this.allSkills[1].name);
-    console.log('this.allSkills 3 = ' + this.allSkills[0]);
-    // console.log('this.allSkills 3 = ' + this.allSkills.find['name']);
-
-    for (let value of Object.values(this.allSkills)) {
-         console.log(value); 
-    }
-
     console.log('this.countries 4 = ' + this.countries[1].name);
 
     this.buildForm();
